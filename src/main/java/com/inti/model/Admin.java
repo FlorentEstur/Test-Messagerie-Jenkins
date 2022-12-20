@@ -1,34 +1,38 @@
-package org.inti.model;
+package com.inti.model;
+
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="ClientProjet")
-public class Client {
+import com.inti.model.Gerant;
 
-	@Id
-	private int id;
+@Entity
+@Table(name="AdminProjet")
+public class Admin {
+	
+	@javax.persistence.Id
+	private int Id;
 	private String nom;
 	private String username;
 	private String password;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "idAdmin")
-	private Admin admin;
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "admin")
+	private List<Client> listeClient;
 	
-	public Client() {
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "admin")
+	private List<Gerant> listeGerant;
+	
+	public Admin() {
 		super();
 	}
 
 
-	public Client(int id, String nom, String username, String password) {
+	public Admin(int id, String nom, String username, String password) {
 		super();
-		this.id = id;
+		Id = id;
 		this.nom = nom;
 		this.username = username;
 		this.password = password;
@@ -36,12 +40,12 @@ public class Client {
 
 
 	public int getId() {
-		return id;
+		return Id;
 	}
 
 
 	public void setId(int id) {
-		this.id = id;
+		Id = id;
 	}
 
 
@@ -77,8 +81,9 @@ public class Client {
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", username=" + username + ", password=" + password + "]";
+		return "Admin [Id=" + Id + ", nom=" + nom + ", username=" + username + ", password=" + password + "]";
 	}
+
 	
 	
 }

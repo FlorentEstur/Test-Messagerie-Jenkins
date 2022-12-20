@@ -1,8 +1,10 @@
-package org.inti.repository;
+package com.inti.repository;
 
-import org.inti.model.Gerant;
+import com.inti.model.Gerant;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface IGerantRepository extends JpaRepository<Gerant, Integer> {
 
 }

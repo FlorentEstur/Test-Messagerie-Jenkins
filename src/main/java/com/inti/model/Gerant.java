@@ -1,4 +1,4 @@
-package org.inti.model;
+package com.inti.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -6,6 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.inti.model.Admin;
 
 @Entity
 @Table(name="GerantProjet")
