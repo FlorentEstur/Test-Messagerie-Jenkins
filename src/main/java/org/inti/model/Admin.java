@@ -17,11 +17,11 @@ public class Admin {
 	private String username;
 	private String password;
 	
-//	@OneToMany (cascade = CascadeType.ALL, mappedBy = "admin")
-//	private List<Client> listeClient;
-//	
-//	@OneToMany (cascade = CascadeType.ALL, mappedBy = "admin")
-//	private List<Gerant> listeGerant;
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "admin")
+	private List<Client> listeClient;
+	
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "admin")
+	private List<Gerant> listeGerant;
 	
 	public Admin() {
 		super();
