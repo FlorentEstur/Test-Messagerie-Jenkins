@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.inti.model.Gerant;
 
 @Entity
-@Table(name="AdminProjet")
+@Table(name="Admin_Projet")
 public class Admin {
 	
 	@javax.persistence.Id
