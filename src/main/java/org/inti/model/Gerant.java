@@ -1,4 +1,4 @@
-package com.inti;
+package org.inti.model;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;

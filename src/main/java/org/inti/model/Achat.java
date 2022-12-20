@@ -1,4 +1,4 @@
-package com.inti;
+package org.inti.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -6,20 +6,20 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Location {
+public class Achat {
 
 	@Id
 	private int id;
 	private String adresse, description;
 	private int piece, chambre;
-	private double prixParMois, surface;
+	private double prixAchat, surface;
 	private boolean ascenceur, parking;
 	
-	public Location() {
+	public Achat() {
 		super();
 	}
 
-	public Location(int id, String adresse, String description, int piece, int chambre, double prixParMois,
+	public Achat(int id, String adresse, String description, int piece, int chambre, double prixAchat,
 			double surface, boolean ascenceur, boolean parking) {
 		super();
 		this.id = id;
@@ -27,7 +27,7 @@ public class Location {
 		this.description = description;
 		this.piece = piece;
 		this.chambre = chambre;
-		this.prixParMois = prixParMois;
+		this.prixAchat = prixAchat;
 		this.surface = surface;
 		this.ascenceur = ascenceur;
 		this.parking = parking;
@@ -73,12 +73,12 @@ public class Location {
 		this.chambre = chambre;
 	}
 
-	public double getPrixParMois() {
-		return prixParMois;
+	public double getPrixAchat() {
+		return prixAchat;
 	}
 
-	public void setPrixParMois(double prixParMois) {
-		this.prixParMois = prixParMois;
+	public void setPrixAchat(double prixAchat) {
+		this.prixAchat = prixAchat;
 	}
 
 	public double getSurface() {
@@ -108,7 +108,7 @@ public class Location {
 	@Override
 	public String toString() {
 		return "Location [id=" + id + ", adresse=" + adresse + ", description=" + description + ", piece=" + piece
-				+ ", chambre=" + chambre + ", prixParMois=" + prixParMois + ", surface=" + surface + ", ascenceur="
+				+ ", chambre=" + chambre + ", prixAchat=" + prixAchat + ", surface=" + surface + ", ascenceur="
 				+ ascenceur + ", parking=" + parking + "]";
 	}
 	
