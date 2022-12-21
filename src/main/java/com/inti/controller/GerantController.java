@@ -29,27 +29,27 @@ public class GerantController {
 	
 	@GetMapping(name="/getAchats")
 	public List<Achat> getlisteAchats(){
-		List<Achat> listeAchats = producerTemplate.requestBody("direct:select", null, List.class);
+		List<Achat> listeAchats = producerTemplate.requestBody("direct:selectAchatAll", null, List.class);
 		logA.info("récupération des achats : "+ listeAchats);
 		return listeAchats;
 	}
 
 	@GetMapping(name = "/getLocations")
 	public List<Location> getlisteLocations() {
-		List<Location> listeLocations = producerTemplate.requestBody("direct:select", null, List.class);
+		List<Location> listeLocations = producerTemplate.requestBody("direct:selectLocationAll", null, List.class);
 		logL.info("récupération des locations : " + listeLocations);
 		return listeLocations;
 	}
 	
 	@GetMapping(name="/getAchat/{id}")
 	public Achat getAchat(@PathVariable int id) {
-		Achat achat = producerTemplate.requestBody("direct:select", null, Achat.class);
+		Achat achat = producerTemplate.requestBody("direct:selectAchat", null, Achat.class);
 		return achat;
 	}
 	
 	@GetMapping(name="/getLocation/{id}")
 	public Location getLocation(@PathVariable int id) {
-		Location location = producerTemplate.requestBody("direct:select", null, Location.class);
+		Location location = producerTemplate.requestBody("direct:selectLocation", null, Location.class);
 		return location;
 	}
 	
@@ -58,13 +58,13 @@ public class GerantController {
 	@PostMapping(name="/saveAchat")
 	public void saveAchat(@RequestBody Achat achat) {
 		logA.info("Achat sauvegardé");
-		producerTemplate.requestBody("direct:insert", achat, List.class);
+		producerTemplate.requestBody("direct:insertAchat", achat, List.class);
 	}
 	
 	@PostMapping(name="/saveLocation")
 	public void saveLocation(@RequestBody Location location) {
 		logL.info("Location sauvegardée");
-		producerTemplate.requestBody("direct:insert", location, List.class);
+		producerTemplate.requestBody("direct:insertLocation", location, List.class);
 	}
 	
 	//DELETE
