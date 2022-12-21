@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Achat;
@@ -21,6 +22,9 @@ public class GerantController {
 
 	@Autowired
 	ProducerTemplate producerTemplate;
+	
+	
+	
 
 	private final Logger logA = LoggerFactory.getLogger(Achat.class);
 	private final Logger logL = LoggerFactory.getLogger(Location.class);
@@ -43,13 +47,13 @@ public class GerantController {
 	
 	@GetMapping(name="/getAchat/{id}")
 	public Achat getAchat(@PathVariable int id) {
-		Achat achat = producerTemplate.requestBody("direct:selectAchat", null, Achat.class);
+		Achat achat = producerTemplate.requestBody("direct:selectAchat", id, Achat.class);
 		return achat;
 	}
 	
 	@GetMapping(name="/getLocation/{id}")
 	public Location getLocation(@PathVariable int id) {
-		Location location = producerTemplate.requestBody("direct:selectLocation", null, Location.class);
+		Location location = producerTemplate.requestBody("direct:selectLocation", id, Location.class);
 		return location;
 	}
 	
