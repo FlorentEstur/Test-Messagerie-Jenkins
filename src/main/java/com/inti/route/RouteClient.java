@@ -4,12 +4,13 @@ import javax.sql.DataSource;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 //import com.inti.process.ProcessGetAllClient;
 
 
-
+@Service
 public class RouteClient extends RouteBuilder {
 
 	@Autowired

@@ -17,13 +17,26 @@ import com.inti.process.ProcessInsertLocationGerant;
 public class RouteGerant extends RouteBuilder {
 
 	@Autowired
-	DataSource dataSource;
+	DataSource datasource;
+	
+
 	@Override
 	public void configure() throws Exception {
 		
+
 		//LISTE ACHATS
 		from("direct:selectAchatAll")
+
+		from("direct:selectAchatAll").log("Début de route")
+
 		.setBody(constant("select * from Achat_Projet"))
+		.process(new Processor() {
+			
+			@Override
+			public void process(Exchange exchange) throws Exception {
+				System.out.println(exchange.getIn().getBody());
+			}
+		})
 		.to("jdbc:dataSource")
 		.process(new ProcessGetAllAchatGerant());
 		
