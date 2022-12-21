@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.inti.model.Achat;
@@ -21,36 +22,25 @@ public class GerantController {
 
 	@Autowired
 	ProducerTemplate producerTemplate;
+	
 
 	private final Logger logA = LoggerFactory.getLogger(Achat.class);
 	private final Logger logL = LoggerFactory.getLogger(Location.class);
 
 	//READ
 	
-	@GetMapping(name="/getAchats")
+	@GetMapping("getAchats")
 	public List<Achat> getlisteAchats(){
+		System.out.println("Début de fonction");
 		List<Achat> listeAchats = producerTemplate.requestBody("direct:selectAchatAll", null, List.class);
 		logA.info("récupération des achats : "+ listeAchats);
 		return listeAchats;
 	}
 
-	@GetMapping(name = "/getLocations")
-	public List<Location> getlisteLocations() {
-		List<Location> listeLocations = producerTemplate.requestBody("direct:selectLocationAll", null, List.class);
-		logL.info("récupération des locations : " + listeLocations);
-		return listeLocations;
-	}
-	
 	@GetMapping(name="/getAchat/{id}")
 	public Achat getAchat(@PathVariable int id) {
-		Achat achat = producerTemplate.requestBody("direct:selectAchat", null, Achat.class);
+		Achat achat = producerTemplate.requestBody("direct:selectAchat", id, Achat.class);
 		return achat;
-	}
-	
-	@GetMapping(name="/getLocation/{id}")
-	public Location getLocation(@PathVariable int id) {
-		Location location = producerTemplate.requestBody("direct:selectLocation", null, Location.class);
-		return location;
 	}
 	
 	//CREATE
@@ -61,11 +51,6 @@ public class GerantController {
 		producerTemplate.requestBody("direct:insertAchat", achat, List.class);
 	}
 	
-	@PostMapping(name="/saveLocation")
-	public void saveLocation(@RequestBody Location location) {
-		logL.info("Location sauvegardée");
-		producerTemplate.requestBody("direct:insertLocation", location, List.class);
-	}
 	
 	//DELETE
 	
