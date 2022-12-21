@@ -24,9 +24,7 @@ public class RouteGerant extends RouteBuilder {
 	public void configure() throws Exception {
 		
 
-		//LISTE ACHATS
-		from("direct:selectAchatAll")
-
+		//LISTE ACHAT
 		from("direct:selectAchatAll").log("Début de route")
 
 		.setBody(constant("select * from Achat_Projet"))
